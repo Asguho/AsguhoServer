@@ -1,0 +1,25 @@
+autoJump:false
+autoSuggestions:true
+realmsNotifications:false
+bobView:false
+darkMojangStudiosBackground:true
+gamma:1
+fov:0.5
+guiScale:5
+simulationDistance:6
+tutorialStep:none
+skipMultiplayerWarning:true
+skipRealms32bitWarning:true
+joinedFirstServer:true
+resourcePacks:["vanilla","Fabric Mods","file/VanillaTweaks-Base.zip"]
+hideBundleTutorial:true
+soundCategory_master:0.5
+soundCategory_music:0.0
+soundCategory_record:0.5
+soundCategory_weather:0.0
+soundCategory_block:0.5
+soundCategory_hostile:0.5
+soundCategory_neutral:0.5
+soundCategory_player:0.5
+soundCategory_ambient:0.0
+soundCategory_voice:0.5

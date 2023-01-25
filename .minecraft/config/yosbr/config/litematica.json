@@ -1,0 +1,55 @@
+{
+    "Hotkeys": {
+        "addSelectionBox": {
+          "keys": "N,A"
+        },
+        "layerModeNext": {
+          "keys": "N,UP"
+        },
+        "layerModePrevious": {
+          "keys": "N,DOWN"
+        },
+        "layerNext": {
+          "keys": "PAGE_UP"
+        },
+        "layerPrevious": {
+          "keys": "PAGE_DOWN"
+        },
+        "openGuiMainMenu": {
+          "keys": "N"
+        },
+        "openGuiMaterialList": {
+          "keys": "N,L"
+        },
+        "openGuiSchematicPlacements": {
+          "keys": "N,P"
+        },
+        "openGuiSchematicVerifier": {
+          "keys": "N,V"
+        },
+        "openGuiSelectionManager": {
+          "keys": "N,S"
+        },
+        "openGuiSettings": {
+          "keys": "N,C"
+        },
+        "pickBlockToggle": {
+          "keys": "N,BUTTON_3"
+        },
+        "rerenderSchematic": {
+          "keys": "F3,N"
+        },
+        "selectionModeCycle": {
+          "keys": "LEFT_CONTROL,N"
+        },
+        "toggleAllRendering": {
+          "keys": "N,R"
+        },
+        "toolEnabledToggle": {
+          "keys": "N,T"
+        }
+    },
+    "Visuals": {
+        "renderBlocksAsTranslucent": true        
+      }
+}

@@ -1,0 +1,116 @@
+name: CI
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 1 * * *'
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.19'
+          check-latest: true
+      - uses: shogo82148/actions-setup-perl@v1
+      
+      - name: install packwiz
+        run: go install github.com/packwiz/packwiz@latest
+        
+      - name: init a packwiz 
+        run: |
+          cd .minecraft
+          packwiz init --author asguho --name AsguhoClient --modloader fabric --fabric-latest -l --version 1.0.0
+        
+      - name: downloading mods 
+        run:  |
+          chmod u+x modinstaller.pl
+          cd .minecraft
+          ../modinstaller.pl
+        
+      - name: exporting a .mrpack 
+        run: |
+          cd .minecraft
+          packwiz mr export
+
+      - name: exporting a .zip 
+        run: |
+          cd .minecraft
+          packwiz cf export
+
+      - name: getting info from previous release
+        id: previousrelease
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+          
+      - name: Fetch Github Release Asset
+        uses: dsaltares/fetch-gh-release-asset@1.0.0
+        with:
+          repo: ${{ github.repository }}
+          regex: true
+          file: "AsguhoClient-.*\\.mrpack"
+          token: ${{ secrets.GITHUBAPI_TOKEN }}
+          target: AsguhoClient-1.0.0.mrpack
+          
+      - name: printing previous release info
+        run: |
+          echo ${{ steps.previousrelease.outputs.release }}
+          echo ${{ steps.previousrelease.outputs.id }}
+
+      - name: getting mcversion   
+        id: mcversion
+        run: |
+          chmod u+x getinfo.pl
+          ./getinfo.pl mcversion
+
+      - name: getting modpackversion   
+        id: modpackversion
+        run: |
+          chmod u+x getinfo.pl
+          ./getinfo.pl modpackversion ${{ steps.previousrelease.outputs.release }}
+
+      - name: getting isitnew   
+        id: isitnew
+        run: |
+          chmod u+x getinfo.pl
+          ./getinfo.pl isitnew 
+
+      - name: printing previous my info
+        run: |
+          echo ${{ steps.mcversion.outputs.mcversion }}
+          echo ${{ steps.modpackversion.outputs.modpackversion }} 
+          echo ${{ steps.isitnew.outputs.isitnew }} 
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: |
+            .minecraft/AsguhoClient-1.0.0.mrpack
+            AsguhoClient-1.0.0.mrpackAsguhoClient-1.0.0.mrpack
+
+
+
+      - uses: Kir-Antipov/mc-publish@v3.2
+        if: ${{ steps.isitnew.outputs.isitnew }}
+        with:
+          name: AsguhoClient-mc${{ steps.mcversion.outputs.mcversion }}-${{ steps.modpackversion.outputs.modpackversion }}
+          version: mc${{ steps.mcversion.outputs.mcversion }}-${{ steps.modpackversion.outputs.modpackversion }}
+          game-versions: ${{ steps.mcversion.outputs.mcversion }}
+          loaders: fabric 
+          version-type: release
+          
+          modrinth-files-primary: .minecraft/AsguhoClient-1.0.0.mrpack
+          modrinth-id: 8OejNW7c
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          
+          #curseforge-id: 394468
+          #curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          
+          github-files-primary: .minecraft/AsguhoClient-1.0.0.mrpack
+          github-files-secondary: .minecraft/AsguhoClient-1.0.0.zip
+          github-token: ${{ secrets.GITHUBAPI_TOKEN }}
+          github-tag: ${{ steps.modpackversion.outputs.modpackversion }}
