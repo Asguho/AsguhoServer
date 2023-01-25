@@ -22,23 +22,23 @@ sub getModPackVersion(){
 sub isItNew(){
 
     my $file1;
-    if (-e '.minecraft/AsguhoClient-1.0.0.mrpack') {
-        open FILE, '<', ".minecraft/AsguhoClient-1.0.0.mrpack" || die $!;
+    if (-e '.minecraft/AsguhoServer-1.0.0.mrpack') {
+        open FILE, '<', ".minecraft/AsguhoServer-1.0.0.mrpack" || die $!;
             $file1=join('',<FILE>);
         close FILE;
     } else {
-        print ".minecraft/AsguhoClient-1.0.0.mrpack does not exist!\n";
+        print ".minecraft/AsguhoServer-1.0.0.mrpack does not exist!\n";
     }
 
     my $file2;
-    if (-e 'AsguhoClient-1.0.0.mrpackAsguhoClient-1.0.0.mrpack') {
-        open FILE, '<', "AsguhoClient-1.0.0.mrpackAsguhoClient-1.0.0.mrpack" || die $!;
+    if (-e 'AsguhoServer-1.0.0.mrpackAsguhoServer-1.0.0.mrpack') {
+        open FILE, '<', "AsguhoServer-1.0.0.mrpackAsguhoServer-1.0.0.mrpack" || die $!;
             $file2=join('',<FILE>);
         close FILE;
     } else {
-        print "AsguhoClient-1.0.0.mrpack does not exist!\n";
+        print "AsguhoServer-1.0.0.mrpack does not exist!\n";
     }
-# && -e '.minecraft/AsguhoClient-1.0.0.mrpack' && -e 'AsguhoClient-1.0.0.mrpackAsguhoClient-1.0.0.mrpack'
+# && -e '.minecraft/AsguhoServer-1.0.0.mrpack' && -e 'AsguhoServer-1.0.0.mrpackAsguhoServer-1.0.0.mrpack'
     if($file1 eq $file2){
         return 'false';
     }else {

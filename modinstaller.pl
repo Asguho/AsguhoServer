@@ -1,9 +1,8 @@
 #!/usr/bin/perl
 use strict;
-my @modrinthMods = ('exordium');
-my @curseforgeMods = ('litematica', 'minihud', 'tellme', 'tweakeroo','item-scroller', 'worldedit', 'carpet','xaeros-world-map','xaeros-minimap-fair-play-edition');
-my @curseforgeModsNeededReason = ('fabric-api','c2me-fabric','debugify','enhanced-block-entities','fastload','ferritecore-fabric','ImmediatelyFast','krypton','lazydfu','lithium','starlight','smoothboot-fabric','vmp-fabric', 'modmenu', 'mouse-wheelie','no-chat-reports','multiconnect','yosbr', 'sodium');
-#,'memoryleakfix'
+my @modrinthMods = ('Lithium','LazyDFU','ferrite-core','starlight','Krypton','memoryleakfix', 'smoothboot-fabric', 'debugify','c2me-fabric','no-chat-reports','fastload','vmp-fabric','servercore', 'carpet','quickcarpet', 'syncmatica', 'inventory-sorting' );
+my @curseforgeMods = ('Servux' );
+
 
 for(@modrinthMods){
 	system("packwiz mr install $_ -y");
@@ -13,8 +12,5 @@ for(@curseforgeMods){
 	system("packwiz cf install $_ -y");
 }
 
-for(@curseforgeModsNeededReason){
-	system("packwiz cf install $_ -y");
-}
 
 
