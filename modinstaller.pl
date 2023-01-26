@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use strict;
-my @modrinthMods = ('Lithium','LazyDFU','ferrite-core','starlight','Krypton','memoryleakfix', 'smoothboot-fabric', 'debugify','c2me-fabric','no-chat-reports','fastload','vmp-fabric','servercore', 'carpet','quickcarpet', 'syncmatica', 'inventory-sorting' );
+my @modrinthMods = ('Lithium','LazyDFU','ferrite-core','starlight','Krypton','memoryleakfix', 'smoothboot-fabric', 'debugify','c2me-fabric','no-chat-reports','fastload','vmp-fabric','servercore', 'carpet','quickcarpet', 'syncmatica', 'inventory-sorting','fabric-api' );
 my @curseforgeMods = ('Servux' );
 
 
