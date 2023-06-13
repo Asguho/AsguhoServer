@@ -95,7 +95,7 @@ jobs:
 
 
       - uses: Kir-Antipov/mc-publish@v3.2
-        if: ${{ steps.isitnew.outputs.isitnew }}
+        if: ${{ steps.isitnew.outputs.isitnew == 'true' }}
         with:
           name: AsguhoServer-mc${{ steps.mcversion.outputs.mcversion }}-${{ steps.modpackversion.outputs.modpackversion }}
           version: mc${{ steps.mcversion.outputs.mcversion }}-${{ steps.modpackversion.outputs.modpackversion }}
